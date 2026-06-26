@@ -1,0 +1,1221 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,700;1,900&display=swap');
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ═══════════════════════════════════════════
+   MOBBIN DESIGN SYSTEM — EXACT TOKEN MAPPING
+   ═══════════════════════════════════════════ */
+
+:root {
+  /* Mobbin Core Colors (light mode) */
+  --mobbin-bg:           #ffffff;
+  --mobbin-bg-2:         #f5f5f5;
+  --mobbin-bg-3:         #ededed;
+  --mobbin-surface:      #ffffff;
+  --mobbin-surface-2:    #f5f5f5;
+  --mobbin-text-primary: #141414;
+  --mobbin-text-2:       #717171;
+  --mobbin-text-3:       #adadad;
+  --mobbin-border:       rgba(64,64,64,0.08);
+  --mobbin-border-2:     rgba(64,64,64,0.12);
+  --mobbin-border-3:     rgba(64,64,64,0.24);
+  --mobbin-blue:         #0065ff;
+  --mobbin-blue-hover:   #0047f0;
+  --mobbin-blue-2:       #0079ff;
+  --mobbin-overlay:      rgba(38,38,38,0.88);
+  --mobbin-hover-bg:     rgba(64,64,64,0.05);
+  --mobbin-active-bg:    rgba(64,64,64,0.08);
+
+  /* Semantic mappings */
+  --body-bg:             var(--mobbin-bg);
+  --body-color:          var(--mobbin-text-primary);
+  --dark-bg:             var(--mobbin-bg);
+  --dark-surface:        var(--mobbin-surface);
+  --dark-surface-hover:  var(--mobbin-surface-2);
+
+  /* Legacy compat vars */
+  --primary-teal:        var(--mobbin-blue);
+  --primary-teal-dark:   var(--mobbin-blue-hover);
+  --primary-teal-light:  var(--mobbin-blue-2);
+  --secondary-gold:      #0065ff;
+  --secondary-gold-dark: #0047f0;
+  --secondary-gold-light:#0079ff;
+  --accent-terracotta:   #0065ff;
+  --accent-terracotta-dark: #0047f0;
+  --accent-terracotta-light: #0079ff;
+}
+
+.dark {
+  /* Mobbin Dark Mode — exact token values */
+  --mobbin-bg:           #141414;
+  --mobbin-bg-2:         #262626;
+  --mobbin-bg-3:         #404040;
+  --mobbin-surface:      #1a1a1a;
+  --mobbin-surface-2:    #262626;
+  --mobbin-text-primary: #ededed;
+  --mobbin-text-2:       #adadad;
+  --mobbin-text-3:       #717171;
+  --mobbin-border:       rgba(237,237,237,0.08);
+  --mobbin-border-2:     rgba(237,237,237,0.16);
+  --mobbin-border-3:     rgba(237,237,237,0.24);
+  --mobbin-blue:         #0079ff;
+  --mobbin-blue-hover:   #0065ff;
+  --mobbin-blue-2:       #0065ff;
+  --mobbin-overlay:      rgba(237,237,237,0.95);
+  --mobbin-hover-bg:     rgba(237,237,237,0.05);
+  --mobbin-active-bg:    rgba(237,237,237,0.08);
+
+  --body-bg:             var(--mobbin-bg);
+  --body-color:          var(--mobbin-text-primary);
+  --dark-bg:             var(--mobbin-bg);
+  --dark-surface:        var(--mobbin-surface);
+  --dark-surface-hover:  var(--mobbin-surface-2);
+
+  --primary-teal:        var(--mobbin-blue);
+  --primary-teal-dark:   var(--mobbin-blue-hover);
+  --primary-teal-light:  var(--mobbin-blue-2);
+  --secondary-gold:      #0079ff;
+  --secondary-gold-dark: #0065ff;
+  --secondary-gold-light:#0047f0;
+  --accent-terracotta:   #0079ff;
+  --accent-terracotta-dark: #0065ff;
+  --accent-terracotta-light: #0047f0;
+}
+
+/* ═══════════════════════════════════════
+   THEME TOKENS (Tailwind v4 Integration)
+   ═══════════════════════════════════════ */
+@theme {
+  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-serif: "Inter", sans-serif;
+  --color-teal:            var(--mobbin-blue);
+  --color-teal-dark:       var(--mobbin-blue-hover);
+  --color-teal-light:      var(--mobbin-blue-2);
+  --color-gold:            var(--mobbin-blue);
+  --color-gold-dark:       var(--mobbin-blue-hover);
+  --color-gold-light:      var(--mobbin-blue-2);
+  --color-terracotta:      var(--mobbin-blue);
+  --color-terracotta-dark: var(--mobbin-blue-hover);
+  --color-terracotta-light:var(--mobbin-blue-2);
+  --color-dark-bg:         var(--mobbin-bg);
+  --color-dark-surface:    var(--mobbin-surface);
+  --color-dark-surface-hover: var(--mobbin-surface-2);
+}
+
+/* ═══════════════════════
+   BASE RESET & GLOBALS
+   ═══════════════════════ */
+*, *::before, *::after {
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html, body {
+  max-width: 100%;
+  overflow-x: hidden;
+  background-color: var(--mobbin-bg);
+  color: var(--mobbin-text-primary);
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+h1, h2, h3, h4, h5, h6, p, figure { margin: 0; }
+
+/* ═══════════════════════════
+   MOBBIN MICRO-INTERACTIONS
+   ═══════════════════════════ */
+button, a {
+  transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+button:active {
+  transform: scale(0.97);
+}
+
+input, select, textarea {
+  font-family: inherit;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease;
+}
+
+input:focus, select:focus, textarea:focus {
+  outline: none !important;
+  border-color: var(--mobbin-blue) !important;
+  box-shadow: 0 0 0 2px rgba(0, 101, 255, 0.12) !important;
+}
+
+.dark input:focus, .dark select:focus, .dark textarea:focus {
+  box-shadow: 0 0 0 2px rgba(0, 121, 255, 0.2) !important;
+}
+
+/* ═════════════════════════
+   MOBBIN NAVBAR STYLES
+   ═════════════════════════ */
+/* Mobbin's centered pill navbar */
+.mobbin-nav {
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 18px;
+  background: rgba(255,255,255,0.88);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(64,64,64,0.1);
+  border-radius: 16px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06), 0 0 0 0.5px rgba(0,0,0,0.04);
+  transition: background 0.2s ease, box-shadow 0.2s ease;
+  overflow: visible;
+}
+
+.dark .mobbin-nav {
+  background: rgba(20,20,20,0.9);
+  border-color: rgba(237,237,237,0.1);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.4), 0 0 0 0.5px rgba(255,255,255,0.04);
+}
+
+@media (max-width: 809px) {
+  .mobbin-nav {
+    width: calc(100vw - 48px);
+    margin-top: 8px;
+  }
+  .mobile-menu-btn {
+    display: flex !important;
+  }
+  .mobbin-nav nav {
+    display: none !important;
+  }
+}
+
+/* Nav link style */
+.mobbin-nav-link {
+  padding: 5px 10px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--mobbin-text-2);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  white-space: nowrap;
+}
+
+.mobbin-nav-link:hover {
+  color: var(--mobbin-text-primary);
+  background: var(--mobbin-hover-bg);
+}
+
+.mobbin-nav-link.active {
+  color: var(--mobbin-text-primary);
+  font-weight: 600;
+}
+
+/* ═══════════════════════
+   MOBBIN BUTTON STYLES
+   ═══════════════════════ */
+
+/* Primary CTA button — Mobbin uses solid black in light, solid white in dark */
+.mobbin-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 9px 18px;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 600;
+  background: var(--mobbin-text-primary);
+  color: var(--mobbin-bg);
+  border: none;
+  cursor: pointer;
+  transition: opacity 0.15s ease, transform 0.15s ease;
+  white-space: nowrap;
+}
+
+.mobbin-btn-primary:hover {
+  opacity: 0.88;
+  transform: translateY(-0.5px);
+}
+
+.mobbin-btn-primary:active {
+  opacity: 0.75;
+  transform: scale(0.97);
+}
+
+/* Secondary ghost button */
+.mobbin-btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 500;
+  background: transparent;
+  color: var(--mobbin-text-primary);
+  border: 1px solid var(--mobbin-border-2);
+  cursor: pointer;
+  transition: all 0.15s ease;
+  white-space: nowrap;
+}
+
+.mobbin-btn-secondary:hover {
+  background: var(--mobbin-hover-bg);
+  border-color: var(--mobbin-border-3);
+}
+
+/* Blue CTA */
+.mobbin-btn-blue {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 9px 18px;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 600;
+  background: var(--mobbin-blue);
+  color: #ffffff;
+  border: none;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  white-space: nowrap;
+}
+
+.mobbin-btn-blue:hover {
+  background: var(--mobbin-blue-hover);
+  transform: translateY(-0.5px);
+}
+
+/* Legacy compat pill buttons */
+.pill-button-glow {
+  background: var(--mobbin-blue) !important;
+  color: #ffffff !important;
+  font-weight: 600;
+  border: none !important;
+  border-radius: 10px;
+  padding: 9px 18px;
+  transition: all 0.15s ease;
+  box-shadow: none !important;
+}
+
+.pill-button-glow:hover {
+  background: var(--mobbin-blue-hover) !important;
+  transform: translateY(-0.5px);
+}
+
+.pill-button-trans {
+  background: transparent !important;
+  color: var(--mobbin-text-primary) !important;
+  border: 1px solid var(--mobbin-border-2) !important;
+  border-radius: 10px;
+  padding: 8px 16px;
+  transition: all 0.15s ease;
+}
+
+.pill-button-trans:hover {
+  background: var(--mobbin-hover-bg) !important;
+  border-color: var(--mobbin-border-3) !important;
+}
+
+/* ═══════════════════════
+   MOBBIN CARD STYLES
+   ═══════════════════════ */
+
+/* Mobbin card: minimal, barely visible borders */
+.mobbin-card {
+  background: var(--mobbin-surface);
+  border: 1px solid var(--mobbin-border);
+  border-radius: 12px;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease, transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.mobbin-card:hover {
+  border-color: var(--mobbin-border-2);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+  transform: translateY(-2px);
+}
+
+.dark .mobbin-card:hover {
+  box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+}
+
+/* App screenshot cards (Mobbin's signature grid cards) */
+.mobbin-screen-card {
+  background: var(--mobbin-bg-2);
+  border: 1px solid var(--mobbin-border);
+  border-radius: 16px;
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.mobbin-screen-card:hover {
+  border-color: var(--mobbin-border-2);
+  transform: translateY(-3px) scale(1.01);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+}
+
+.dark .mobbin-screen-card:hover {
+  box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+}
+
+/* Legacy card classes mapped to Mobbin style */
+.premium-glass-card,
+.pillar-grid-card,
+.scholar-profile-card,
+.news-card,
+.forum-insight-card {
+  background: var(--mobbin-surface) !important;
+  border: 1px solid var(--mobbin-border) !important;
+  border-radius: 12px !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease, transform 0.2s cubic-bezier(0.4,0,0.2,1) !important;
+}
+
+.premium-glass-card:hover,
+.pillar-grid-card:hover,
+.scholar-profile-card:hover,
+.news-card:hover,
+.forum-insight-card:hover {
+  border-color: var(--mobbin-border-2) !important;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.06) !important;
+  transform: translateY(-2px) !important;
+  background: var(--mobbin-surface) !important;
+}
+
+.dark .premium-glass-card:hover,
+.dark .pillar-grid-card:hover,
+.dark .scholar-profile-card:hover,
+.dark .news-card:hover,
+.dark .forum-insight-card:hover {
+  box-shadow: 0 4px 16px rgba(0,0,0,0.35) !important;
+}
+
+/* Legacy glass panels — Mobbin uses flat/minimal */
+.glass-panel,
+.glass-panel-teal,
+.glass-panel-gold,
+.glass-panel-terracotta,
+.dark-glass-panel {
+  background: var(--mobbin-surface) !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  border: 1px solid var(--mobbin-border) !important;
+  box-shadow: none !important;
+}
+
+/* ═══════════════════════════
+   MOBBIN INPUT / FORM STYLES
+   ═══════════════════════════ */
+
+.mobbin-input {
+  width: 100%;
+  padding: 9px 12px;
+  border-radius: 10px;
+  border: 1px solid var(--mobbin-border-2);
+  background: var(--mobbin-bg);
+  color: var(--mobbin-text-primary);
+  font-size: 13px;
+  font-family: inherit;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.mobbin-input::placeholder {
+  color: var(--mobbin-text-3);
+}
+
+.mobbin-input:focus {
+  outline: none;
+  border-color: var(--mobbin-blue);
+  box-shadow: 0 0 0 2px rgba(0,101,255,0.12);
+}
+
+/* ══════════════════════════
+   MOBBIN CHIP / BADGE / TAG
+   ══════════════════════════ */
+
+.mobbin-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 10px;
+  border-radius: 9999px;
+  font-size: 11px;
+  font-weight: 500;
+  background: var(--mobbin-bg-2);
+  color: var(--mobbin-text-2);
+  border: 1px solid var(--mobbin-border);
+  transition: all 0.15s ease;
+}
+
+.mobbin-chip:hover {
+  background: var(--mobbin-bg-3);
+  border-color: var(--mobbin-border-2);
+}
+
+.mobbin-chip.active {
+  background: var(--mobbin-text-primary);
+  color: var(--mobbin-bg);
+  border-color: var(--mobbin-text-primary);
+}
+
+/* ══════════════════════
+   MOBBIN TAB SWITCHER
+   ══════════════════════ */
+
+.mobbin-tab-bar {
+  display: flex;
+  gap: 2px;
+  padding: 3px;
+  background: var(--mobbin-bg-2);
+  border-radius: 10px;
+  border: 1px solid var(--mobbin-border);
+}
+
+.mobbin-tab {
+  padding: 6px 14px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--mobbin-text-2);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  white-space: nowrap;
+}
+
+.mobbin-tab:hover {
+  color: var(--mobbin-text-primary);
+  background: var(--mobbin-hover-bg);
+}
+
+.mobbin-tab.active {
+  background: var(--mobbin-surface);
+  color: var(--mobbin-text-primary);
+  font-weight: 600;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.08), 0 0 0 0.5px rgba(0,0,0,0.04);
+}
+
+.dark .mobbin-tab.active {
+  box-shadow: 0 1px 4px rgba(0,0,0,0.4), 0 0 0 0.5px rgba(255,255,255,0.04);
+}
+
+/* ═══════════════════════════
+   MOBBIN SECTION DIVIDERS
+   ═══════════════════════════ */
+
+.mobbin-divider {
+  height: 1px;
+  background: var(--mobbin-border);
+  width: 100%;
+  margin: 0;
+}
+
+/* ════════════════════════════
+   MOBBIN DROPDOWN / POPOVER
+   ════════════════════════════ */
+
+.mobbin-dropdown {
+  background: var(--mobbin-surface);
+  border: 1px solid var(--mobbin-border-2);
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.12), 0 0 0 0.5px rgba(0,0,0,0.04);
+  padding: 6px;
+  overflow: hidden;
+}
+
+.dark .mobbin-dropdown {
+  box-shadow: 0 8px 32px rgba(0,0,0,0.5), 0 0 0 0.5px rgba(255,255,255,0.06);
+}
+
+.mobbin-dropdown-item {
+  width: 100%;
+  text-align: left;
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 450;
+  color: var(--mobbin-text-primary);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: background 0.1s ease;
+}
+
+.mobbin-dropdown-item:hover {
+  background: var(--mobbin-hover-bg);
+}
+
+/* ═══════════════════════════════
+   MOBBIN PRIMARY DROPDOWN (NAV)
+   ═══════════════════════════════ */
+
+.primary-dropdown {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.15s ease, transform 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translate(-50%, 6px) scale(0.98);
+}
+
+.primary-dropdown-wrapper:hover .primary-dropdown,
+.primary-dropdown-wrapper:focus-within .primary-dropdown {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translate(-50%, 0) scale(1);
+}
+
+.primary-dropdown-wrapper:hover .primary-dropdown-arrow,
+.primary-dropdown-wrapper:focus-within .primary-dropdown-arrow {
+  transform: rotate(180deg);
+}
+
+/* ══════════════════════
+   MOBBIN SCROLLBAR
+   ══════════════════════ */
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--mobbin-border-2);
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--mobbin-border-3);
+}
+
+.scrollbar-hide::-webkit-scrollbar { display: none; }
+.scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* ════════════════════════════════
+   MOBBIN GALLERY SCROLL TRACKS
+   ════════════════════════════════ */
+
+.forum-insight-gallery-container,
+.news-gallery-container,
+.speakers-gallery-container {
+  width: 100%;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+}
+
+.forum-insight-gallery-track,
+.news-gallery-track {
+  display: flex;
+  gap: 12px;
+  padding: 8px 24px 16px;
+}
+
+.speakers-gallery-track {
+  display: flex;
+  gap: 16px;
+  padding: 8px 24px 16px;
+}
+
+.forum-insight-card, .news-card {
+  width: 300px;
+  flex-shrink: 0;
+}
+
+.speaker-card {
+  width: 200px;
+  flex-shrink: 0;
+  aspect-ratio: 3/4;
+}
+
+@media (min-width: 640px) {
+  .forum-insight-gallery-track,
+  .news-gallery-track,
+  .speakers-gallery-track {
+    padding-left: max(2rem, calc((100% - 1200px) / 2));
+    padding-right: max(2rem, calc((100% - 1200px) / 2));
+  }
+  .forum-insight-card, .news-card { width: 340px; }
+  .speaker-card { width: 220px; }
+}
+
+/* ═══════════════════════════
+   MOBBIN HERO LAYOUT
+   ═══════════════════════════ */
+
+.home-hero-inner {
+  min-height: 80svh;
+  padding-top: 120px;
+}
+
+@media (min-width: 640px) {
+  .home-hero-inner {
+    min-height: 75svh;
+    padding-top: 140px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .home-hero-inner {
+    min-height: 780px;
+    padding-top: 180px;
+  }
+}
+
+/* ═════════════════════════════
+   MOBBIN ANIMATIONS
+   ═════════════════════════════ */
+
+@keyframes mobbin-fade-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in {
+  animation: mobbin-fade-in 0.25s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes mobbin-slide-up {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.mobbin-slide-up {
+  animation: mobbin-slide-up 0.3s cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+
+@keyframes logo-scroll {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-logo-scroll {
+  animation: logo-scroll 45s linear infinite;
+}
+
+.animate-logo-scroll:hover {
+  animation-play-state: paused;
+}
+
+.hero-sponsor-edge-fade {
+  mask-image: linear-gradient(to right, transparent, black 12%, black 88%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 12%, black 88%, transparent);
+}
+
+/* Map route animation */
+@keyframes route-flow {
+  0%   { stroke-dashoffset: 24; }
+  100% { stroke-dashoffset: 0; }
+}
+
+.animate-route-flow {
+  animation: route-flow 1.5s linear infinite;
+}
+
+@keyframes pulse-ring {
+  0%   { transform: scale(0.6); opacity: 1; }
+  100% { transform: scale(1.4); opacity: 0; }
+}
+
+.animate-pulse-ring {
+  animation: pulse-ring 2s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
+  transform-origin: center;
+}
+
+/* Float */
+@keyframes float-slow {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-5px); }
+}
+
+.animate-float {
+  animation: float-slow 6s ease-in-out infinite;
+}
+
+/* Pulse soft */
+@keyframes pulse-soft {
+  0%, 100% { opacity: 0.7; }
+  50%       { opacity: 1; }
+}
+
+.animate-pulse-soft {
+  animation: pulse-soft 3s ease-in-out infinite;
+}
+
+/* Spin animations for atlas */
+@keyframes spin-clockwise {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+@keyframes spin-counter {
+  from { transform: rotate(360deg); }
+  to   { transform: rotate(0deg); }
+}
+
+.animate-spin-slow {
+  animation: spin-clockwise 70s linear infinite;
+  transform-origin: center;
+}
+.animate-spin-reverse {
+  animation: spin-counter 90s linear infinite;
+  transform-origin: center;
+}
+
+@keyframes spin-y {
+  0%   { transform: rotateY(0deg); }
+  100% { transform: rotateY(360deg); }
+}
+.animate-spin-y {
+  animation: spin-y 35s linear infinite;
+  transform-style: preserve-3d;
+}
+
+@keyframes earth-zoom {
+  0%, 100% { transform: scale(1.1) translateY(0); }
+  50%       { transform: scale(1.14) translateY(-3px); }
+}
+.animate-earth-zoom {
+  animation: earth-zoom 45s ease-in-out infinite;
+}
+
+/* ═══════════════════════════
+   MOBBIN MAP STYLES
+   ═══════════════════════════ */
+
+.map-land {
+  fill: #1a1a1a;
+  stroke: rgba(0, 101, 255, 0.15);
+  stroke-width: 1px;
+  transition: fill 0.2s ease, stroke 0.2s ease;
+}
+
+.map-land:hover {
+  fill: #232323;
+  stroke: rgba(0, 101, 255, 0.3);
+}
+
+.map-grid-line {
+  stroke: rgba(0, 101, 255, 0.05);
+  stroke-width: 0.5px;
+  stroke-dasharray: 3, 3;
+}
+
+.map-node-glow {
+  filter: drop-shadow(0 0 6px currentColor);
+}
+
+.cursor-grab  { cursor: grab !important; }
+.cursor-grabbing { cursor: grabbing !important; }
+
+.map-container {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ═══════════════════════════════════════════
+   MOBBIN LIGHT MODE OVERRIDES
+   (Keep text readable over white backgrounds)
+   ═══════════════════════════════════════════ */
+
+html:not(.dark) .text-white {
+  color: var(--mobbin-text-primary);
+}
+
+html:not(.dark) .text-white\/95,
+html:not(.dark) .text-white\/90,
+html:not(.dark) .text-white\/85,
+html:not(.dark) .text-white\/80 {
+  color: rgba(20, 20, 20, 0.9) !important;
+}
+html:not(.dark) .text-white\/70,
+html:not(.dark) .text-white\/65,
+html:not(.dark) .text-white\/60,
+html:not(.dark) .text-white\/50 {
+  color: rgba(20, 20, 20, 0.6) !important;
+}
+html:not(.dark) .text-white\/45,
+html:not(.dark) .text-white\/40,
+html:not(.dark) .text-white\/35,
+html:not(.dark) .text-white\/30 {
+  color: rgba(20, 20, 20, 0.4) !important;
+}
+html:not(.dark) .text-white\/20,
+html:not(.dark) .text-white\/15,
+html:not(.dark) .text-white\/10 {
+  color: rgba(20, 20, 20, 0.18) !important;
+}
+
+html:not(.dark) .border-white\/5,
+html:not(.dark) .border-white\/10,
+html:not(.dark) .border-white\/15,
+html:not(.dark) .border-white\/20 {
+  border-color: rgba(20, 20, 20, 0.06) !important;
+}
+
+/* Force white text on explicitly dark elements */
+.bg-black, .bg-teal, .bg-teal-dark, .bg-gold-dark,
+.bg-terracotta, .bg-terracotta-dark, .bg-slate-900,
+.pill-button-glow, .text-white-force,
+button.bg-black, button.bg-teal, button.bg-teal-dark,
+button.bg-gold-dark, button.bg-terracotta, button.bg-terracotta-dark,
+button.bg-slate-900 {
+  &, & *, & span, & h1, & h2, & h3, & h4, & p, & strong, & a {
+    color: #ffffff !important;
+  }
+}
+
+/* ═════════════════════════════════
+   MOBBIN DARK MODE CLASS OVERRIDES
+   ═════════════════════════════════ */
+
+html.dark {
+  .bg-white, .bg-\[\#FDFBF7\] {
+    background-color: var(--mobbin-surface) !important;
+    color: var(--mobbin-text-primary) !important;
+  }
+  .hover\:bg-slate-50\/80:hover,
+  .hover\:bg-slate-50:hover,
+  .bg-slate-50 {
+    background-color: var(--mobbin-bg-2) !important;
+    color: var(--mobbin-text-primary) !important;
+  }
+  .bg-slate-100 {
+    background-color: var(--mobbin-bg-2) !important;
+  }
+  .bg-slate-100\/60 {
+    background-color: rgba(38, 38, 38, 0.6) !important;
+  }
+  .border-slate-200,
+  .border-slate-200\/70,
+  .border-slate-200\/60,
+  .border-slate-200\/50,
+  .border-slate-300,
+  .border-\[\#E3D1BA\]\/85,
+  .border-\[\#E3D1BA\]\/60 {
+    border-color: var(--mobbin-border) !important;
+  }
+  .text-slate-800, .text-slate-700,
+  .text-slate-650, .text-slate-600 {
+    color: var(--mobbin-text-primary) !important;
+  }
+  .text-slate-500, .text-slate-400 {
+    color: var(--mobbin-text-2) !important;
+  }
+  .text-teal {
+    color: var(--mobbin-blue) !important;
+  }
+  .bg-teal {
+    background-color: var(--mobbin-blue) !important;
+    color: #ffffff !important;
+  }
+  .bg-teal\/10 {
+    background-color: rgba(0,121,255,0.1) !important;
+  }
+  .border-teal\/20 {
+    border-color: rgba(0,121,255,0.2) !important;
+  }
+  .hover\:text-teal:hover {
+    color: var(--mobbin-blue) !important;
+  }
+  .hover\:bg-teal\/5:hover {
+    background-color: rgba(0,121,255,0.05) !important;
+  }
+}
+
+/* ══════════════════════════
+   MOBBIN FOOTER STYLES
+   ══════════════════════════ */
+
+html:not(.dark) footer,
+footer {
+  color: rgba(237, 237, 237, 0.9) !important;
+  background: #141414 !important;
+  border-top: 1px solid rgba(255,255,255,0.06);
+}
+
+footer .text-white { color: #ffffff !important; }
+footer .text-white\/90 { color: rgba(255,255,255,0.9) !important; }
+footer .text-white\/80 { color: rgba(255,255,255,0.8) !important; }
+footer .text-white\/70 { color: rgba(255,255,255,0.7) !important; }
+footer .text-white\/60 { color: rgba(255,255,255,0.6) !important; }
+footer .text-white\/50 { color: rgba(255,255,255,0.5) !important; }
+footer .text-white\/40 { color: rgba(255,255,255,0.4) !important; }
+footer .text-white\/30 { color: rgba(255,255,255,0.3) !important; }
+footer .text-white\/20 { color: rgba(255,255,255,0.2) !important; }
+footer .text-white\/10 { color: rgba(255,255,255,0.1) !important; }
+footer .border-white\/5  { border-color: rgba(255,255,255,0.05) !important; }
+footer .border-white\/10 { border-color: rgba(255,255,255,0.1) !important; }
+footer .border-white\/20 { border-color: rgba(255,255,255,0.2) !important; }
+footer button:hover, footer a:hover {
+  color: var(--mobbin-blue) !important;
+}
+
+/* ══════════════════════════════════
+   FORCE WHITE TEXT IN DARK SURFACES
+   ══════════════════════════════════ */
+
+.dark-glass-panel,
+[class*="bg-black/"],
+[class*="bg-black"],
+.bg-black, .bg-black\/10, .bg-black\/15,
+.bg-black\/30, .bg-black\/35, .bg-black\/40,
+.bg-\[\#0f172a\], .bg-\[\#0f172a\]\/90 {
+  & .text-white { color: #ffffff !important; }
+  & .text-white\/90, & .text-white\/80 { color: rgba(255,255,255,0.9) !important; }
+  & .text-white\/70, & .text-white\/60, & .text-white\/50 { color: rgba(255,255,255,0.7) !important; }
+  & .border-white\/10 { border-color: rgba(255,255,255,0.1) !important; }
+  & .border-white\/5  { border-color: rgba(255,255,255,0.05) !important; }
+}
+
+/* ════════════════════════
+   GRADIENT TEXT UTILITY
+   ════════════════════════ */
+
+.text-gradient-gold-teal {
+  background: linear-gradient(135deg, var(--mobbin-blue) 0%, #0047f0 100%) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+}
+
+.text-gradient-gold-white {
+  background: linear-gradient(135deg, var(--mobbin-text-primary) 30%, var(--mobbin-blue) 100%) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+}
+
+/* ══════════════════════════
+   HERITAGE BORDER COMPAT
+   ══════════════════════════ */
+
+.heritage-border-gold, .heritage-border-teal {
+  position: relative;
+}
+
+.heritage-border-gold::after, .heritage-border-teal::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border: 1px solid var(--mobbin-blue);
+  opacity: 0.2;
+  pointer-events: none;
+  border-radius: inherit;
+}
+
+.glow-text-gold, .glow-text-teal, .glow-text-terracotta {
+  text-shadow: none;
+}
+
+.glow-border-gold, .glow-border-teal {
+  border-color: var(--mobbin-border);
+}
+.glow-border-gold:hover, .glow-border-teal:hover {
+  border-color: var(--mobbin-blue) !important;
+}
+
+/* ═══════════════════════
+   ACCENT CARD VARIANTS
+   ═══════════════════════ */
+
+.pillar-card-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.1) 60%, transparent 100%) !important;
+  z-index: 5;
+  pointer-events: none;
+}
+
+html:not(.dark) .pillar-card-overlay {
+  background: linear-gradient(to top, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.1) 60%, transparent 100%) !important;
+}
+
+.pillar-card-grad-magazine,
+.pillar-card-grad-research,
+.pillar-card-grad-cocoon,
+.pillar-card-grad-finance {
+  background: var(--mobbin-surface) !important;
+}
+
+.pillar-card-grad-magazine:hover,
+.pillar-card-grad-research:hover,
+.pillar-card-grad-cocoon:hover,
+.pillar-card-grad-finance:hover {
+  background: var(--mobbin-surface-2) !important;
+}
+
+/* Disabled decorative blobs */
+.glowing-blob-lime,
+.glowing-blob-teal,
+.glowing-blob-gold {
+  display: none !important;
+}
+
+.scholar-card-bg-gradient { display: none !important; }
+
+.scholar-profile-avatar-border {
+  border: 2px solid var(--mobbin-blue) !important;
+}
+
+/* ═══════════════════════
+   CIRCULAR PORTRAIT
+   ═══════════════════════ */
+
+.circular-mask-wrap {
+  position: relative;
+  width: 300px;
+  height: 300px;
+}
+
+@media (min-width: 640px) {
+  .circular-mask-wrap {
+    width: 380px;
+    height: 380px;
+  }
+}
+
+.hero-portrait-circle {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 1px solid var(--mobbin-border-2);
+  background: var(--mobbin-bg-2);
+}
+
+/* ══════════════════
+   LOGO FILTER
+   ══════════════════ */
+
+.header-logo {
+  transition: filter 0.2s ease;
+}
+
+html:not(.dark) .header-logo {
+  filter: brightness(0.9) contrast(1.1);
+}
+
+html.dark .header-logo {
+  filter: invert(0.85) sepia(0.5) saturate(3) hue-rotate(200deg) brightness(1.15) contrast(1.1) !important;
+}
+
+/* ══════════════════════
+   ISLAMIC GRID BG
+   ══════════════════════ */
+
+.islamic-grid-bg { background: none !important; }
+
+/* ══════════════════════════════════════════════
+   MABAR MODERN DESIGN UTILITIES & COMPONENT SYSTEM
+   ══════════════════════════════════════════════ */
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.45);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(64, 64, 64, 0.08);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+  border-radius: 20px;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.dark .glass-card {
+  background: rgba(26, 26, 26, 0.6);
+  border-color: rgba(237, 237, 237, 0.06);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.25);
+}
+
+.glass-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.04);
+  border-color: rgba(64, 64, 64, 0.12);
+}
+
+.dark .glass-card:hover {
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
+  border-color: rgba(237, 237, 237, 0.12);
+}
+
+.modern-input {
+  background: rgba(255, 255, 255, 0.65);
+  border: 1px solid var(--mobbin-border-2);
+  border-radius: 12px;
+  padding: 10px 16px;
+  font-size: 13px;
+  color: var(--mobbin-text-primary);
+  width: 100%;
+  transition: all 0.15s ease;
+}
+
+.dark .modern-input {
+  background: rgba(26, 26, 26, 0.8);
+  border-color: var(--mobbin-border-2);
+}
+
+.modern-input:focus {
+  background: var(--mobbin-bg);
+  border-color: var(--mobbin-blue) !important;
+  box-shadow: 0 0 0 3px rgba(0, 101, 255, 0.12) !important;
+}
+
+.dark .modern-input:focus {
+  box-shadow: 0 0 0 3px rgba(0, 121, 255, 0.2) !important;
+}
+
+.timeline-line {
+  position: absolute;
+  left: 16px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: var(--mobbin-border-2);
+}
+
+@media (min-width: 768px) {
+  .timeline-line {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
+.pulse-badge {
+  position: relative;
+  display: inline-flex;
+  border-radius: 9999px;
+  width: 8px;
+  height: 8px;
+  background-color: var(--mobbin-blue);
+}
+
+.pulse-badge::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 9999px;
+  background-color: var(--mobbin-blue);
+  animation: pulse-ring 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulse-ring {
+  0% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(2.5);
+    opacity: 0;
+  }
+}
